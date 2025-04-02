@@ -150,5 +150,72 @@
     ?>
 
 
+    <!-- loops -->
+
+    <?php
+       $x=1 ; 
+       while ($x<11){
+
+        if($x===1){
+            echo "<br>Number : $x <br><hr><br>";
+            $x++;
+            continue;
+        }
+
+        echo "Number : $x <br><hr><br>";
+        $x++;
+    }
+    
+    ?>
+
+    <!-- for loop  -->
+    
+    <?php 
+      
+      for ($i=0 ; $i<10;$i++){
+         
+        echo "Number : $i <br>";
+
+      }
+
+
+    ?>
+
+    <!-- foreach loop -->
+
+    <?php 
+        $colors = ['red',"green","blue"];
+        forEach ($colors as $color){
+           echo "Color : $color | ";
+        };   
+    
+    ?>
+
+    <!-- break and continue  -->
+
+    <?php 
+    
+       for ($i=0 ; $i<20 ; $i++){
+          
+
+           if ($i<5){
+              echo "the number $i is less than 5<br>";
+              continue;
+           }
+
+           echo "pass <br>";
+
+           if ($i>9){
+            echo  "the number $i is greater then 9";
+            break;
+           }
+
+
+       }
+    
+    ?>
+
+
+
 </body>
 </html>
