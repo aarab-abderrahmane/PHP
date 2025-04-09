@@ -98,7 +98,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         body {
-            background-color: transparent;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -112,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-900">
     <?php
         $error = $_SESSION['errors'] ?? [];
         $old = $_SESSION['old'] ?? [];
@@ -120,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     ?>
 
     <div class="container">
-        <section class="bg-white dark:bg-gray-900 w-full">
+        <section class="bg-gray-900 w-full">
             <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
                 <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new product</h2>
                 <form method="post" enctype="multipart/form-data">
@@ -164,6 +163,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                             <span class="error dark:text-rose-300"><?= $error['image'] ?? '' ?></span>
                         </div>
                     </div>
+                    <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:bg-blue-700 dark:focus:ring-primary-900 hover:bg-blue-800">
+                        Add product
+                    </button>
                     <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:bg-rose-700 dark:focus:ring-primary-900 hover:bg-rose-800">
                         Add product
                     </button>
