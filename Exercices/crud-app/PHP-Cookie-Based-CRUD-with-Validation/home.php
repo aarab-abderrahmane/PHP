@@ -1,9 +1,5 @@
 <?php
-
     $data = isset($_COOKIE['users'])  ? json_decode($_COOKIE['users'],true) : [];
-
-
-
 ?>  
 
 
@@ -85,8 +81,10 @@
                             <div>
                                 <p><b>nom : </b><?= htmlspecialchars($user['nom'])?></p>
                                 <p><b>email : </b><?= htmlspecialchars($user['email'])?></p>
-                                <p><b>Matricule unique : </b><?= htmlspecialchars($user['matricule'])?></p>
-                                <p><b>linkedin URL : </b><?= htmlspecialchars($user['URL'])?></p>
+                                <p><b>Matricule : </b><?= htmlspecialchars($user['matricule'])?></p>
+                                <p><b>linkedin URL : </b><?='<a href="'.htmlspecialchars($user['URL']).'" target="_blank" >'.htmlspecialchars($user['URL']).'</a>'?></p>
+                                <p><b>CV : </b><?='<a href="'.htmlspecialchars($user['pdf']).'" target="_blank" >View CV</a>'?></p>
+
                             </div>
                         </div>       
                         
