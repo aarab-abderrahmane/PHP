@@ -1,3 +1,47 @@
+<?php
+
+    include "connection-db.php";
+
+    $query = "SELECT * FROM userss";
+    $result = mysqli_query($connection,$query);
+
+    $errors=[];
+    
+    if($_SERVER['REQUEST_METHOD']=="POST"){
+            $fname = trim($_POST['fname']);
+            $lname = trim($_POST['lname']);
+            $email = trim($_POST['email']);
+            $password = $_POST['password'];
+            $conpassword = $_POST['conpassword'];
+
+            if(isset($_POST['fname'])  && (empty($fname )  || !preg_match("/^[a-zA-Z]{3,}$/",$fname))){
+                $errors['fname']='-> Only letters allowed ,min 3 caracters ';
+            }
+
+            if(isset($_POST['lname']) && ((empty($lname))  || !preg_match('/^[a-z-A-Z]{4,}$/',$lname)) ){
+                $errors['lname']="-> Only letters allowed,min 4 caracters";
+            }
+
+            if(isset($_POST['email']) && ((empty($email))  || !filter_var($email,FILTER_VALIDATE_EMAIL) ) ){
+                $errors['email']="-> Invalid email";
+            }
+
+            if(isset($_POST['password']) && ((empty($password))  ||  !preg_match('/^(?=(?:.*[a-zA-Z]){5,})(?=.{11,}).*$/',$password)  ) ){
+                $errors['password']="-> Password must be more than 10 characters and contain at least 5 letters";
+            }
+
+            if(isset($_POST['conpassword']) && ((empty($conpassword))  || ($password !== $conpassword))){
+                $errors['conpassword']="-> password does not match";
+            }
+
+
+            
+
+
+    }
+
+
+?>
 
 
 <!DOCTYPE html>
@@ -13,13 +57,16 @@
     <title>Document</title>
 
     <style>
+
+      
         body{
             display: flex;
             justify-content: center;
-            align-items: center;
-            height : 100vh;
+            /* align-items: center; */
+            min-height : 100vh;
             font-weight: bold;
             font-family: monospace;
+            align-items: flex-start;
 
 
             background-color: #622785;
@@ -33,20 +80,24 @@
             /* max-width: 800px; */
             display: flex;
             justify-content: space-between;
-            align-items: end;
+            align-items: start;
+            align-items: stretch;
             gap:10px;
+            height: auto;
             border: 1px gray solid;
             border-radius: 15px;;
             padding: 0;
             width: auto;
+            margin: 10vh  0;
+            /* overflow:scroll; */
 
             
         }
 
         #image{
-            width: 30vw;
-            height: 565px;
-            object-fit: cover;
+            width: 34vw;
+            height: auto;
+            object-fit:cover;
             margin: 0;
             border-top-left-radius: 15px;
             border-bottom-left-radius: 15px;
@@ -66,7 +117,15 @@
             font-weight: bold;
             height: 40px;
             border-color:rgb(66, 66, 66) !important;
-            -webkit-text-fill-color: white !important;
+        }
+
+        input::placeholder{
+            color: red !important;
+        }
+        
+        .error{
+            color: yellow;
+            font-size: 0.85rem;
         }
 
         input:-webkit-autofill {
@@ -102,20 +161,30 @@
             .container{
                 border: none;
                 flex-direction: column;
+                align-items: start;
                 align-items: center;
+                margin-top: 0;
 
             }
 
+            form{
+                padding: 0 10px;
+            }
+
             #image{
-                width: 100%;
+                height: 50vh;
+                width: 100vw;
                 mask: none;
                 mask: linear-gradient(to top, transparent 0%, black 100%);
                 border-radius: 15px;
 
             }
 
-            body{
+            label,.error{
                 font-size: 0.7rem;
+            }
+            input{
+                font-size: 0.8rem !important;
             }
 
 
@@ -124,6 +193,8 @@
             form{
                 width: 31vw;;
             }
+
+     
 
 
         }
@@ -141,19 +212,38 @@
 
                     <h2>Registration</h2>
                     <label for="fname" class="from-label">first name :</label>
-                    <input type="text" name="fname" id="fname" class="form-control">
+                    <input type="text" name="fname" id="fname" class="form-control" value="<?= isset($_POST['fname']) ? $_POST['fname'] : ''?>" >
+                    <?php if(isset($errors['fname'])):?>
+                        <p class="error"><?= $errors['fname']?></p>
+                    <?php endif ; ?>
 
                     <label for="lname" class="form-label mt-3">last name :</label>
-                    <input type="text" name="lname" id="lname" class="form-control">
+                    <input type="text" name="lname" id="lname" class="form-control" value="<?= isset($_POST['lname']) ? 
+                    $_POST['lname'] : ''?>">
+                    <?php if(isset($errors['lname'])):?>
+                        <p class="error"><?= $errors['lname']?></p>
+                    <?php endif ; ?>
 
                     <label for="email" class="form-label mt-3">Email</label>
-                    <input type="email" name="email" id="email" class="form-control">
+                    <input type="text" name="email" id="email" class="form-control" value="<?= isset($_POST['email']) ? 
+                    $_POST['email'] : ''?>">
+                    <?php if(isset($errors['email'])):?>
+                        <p class="error"><?= $errors['email']?></p>
+                    <?php endif ; ?>
 
                     <label for="password" class="form-label mt-3">password</label>
-                    <input type="password" name="password" id="password" class="form-control">
+                    <input type="password" name="password" id="password" class="form-control" value="<?= isset($_POST['password']) ? 
+                    $_POST['password'] : ''?>">
+                    <?php if(isset($errors['password'])):?>
+                        <p class="error"><?= $errors['password']?></p>
+                    <?php endif ; ?>
 
                     <label for="conpassword" class="form-label mt-3">Confirm password</label>
-                    <input type="password" name="conpassword" id="conpassword" class="form-control">
+                    <input type="password" name="conpassword" id="conpassword" class="form-control" value="<?= isset($_POST['conpassword']) ? 
+                    $_POST['conpassword'] : ''?>">
+                    <?php if(isset($errors['conpassword'])):?>
+                        <p class="error"><?= $errors['conpassword']?></p>
+                    <?php endif ; ?>
 
                     <button type="submit" class="btn btn-success mt-3"><i class="bi bi-patch-plus me-3"></i>Sign UP</button>
             </form>
