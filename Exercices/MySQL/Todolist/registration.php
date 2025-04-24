@@ -1,16 +1,22 @@
 <?php
 
+    if(isset($_COOKIE['user_email'])){
+        header("Location: dashboard.php");
+        exit;
+    }
+
     include "connection-db.php";
 
     $query = "SELECT * FROM userss";
     $result = mysqli_query($connection,$query);
+    $registration_succ='';
 
     $errors=[];
     
     if($_SERVER['REQUEST_METHOD']=="POST"){
             $fname = trim($_POST['fname']);
             $lname = trim($_POST['lname']);
-            $email = trim($_POST['email']);
+            $email = strtolower(trim($_POST['email']));
             $password = $_POST['password'];
             $conpassword = $_POST['conpassword'];
 
@@ -35,6 +41,32 @@
             }
 
 
+            if(empty($errors)){
+                
+                $email_check = "SELECT * FROM userss WHERE email='$email'";
+                $result = mysqli_query($connection,$email_check);
+
+                if(mysqli_num_rows($result) >0){
+                    $registration_succ=false;
+                    
+                }else{
+
+                    $sql  = "INSERT INTO userss (fname,lname,email,password,role) VALUES ('$fname','$lname','$email','$password','user')";
+
+                    if(mysqli_query($connection,$sql)){
+                        setcookie('user_email',$email,time()+86400,"/");
+                        header('Location: todo.php');
+                        exit;
+                    }else{
+                        echo "There was an error while registering the user.";
+                    }
+                }
+
+
+
+            }
+
+
             
 
 
@@ -54,19 +86,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Bungee+Spice&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Document</title>
 
     <style>
-
+        *::selection{
+            background-color:rgb(187, 16, 255);
+            color: black;
+        }
       
         body{
             display: flex;
-            justify-content: center;
-            /* align-items: center; */
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
             min-height : 100vh;
             font-weight: bold;
             font-family: monospace;
-            align-items: flex-start;
+            /* align-items: flex-start; */
 
 
             background-color: #622785;
@@ -74,6 +111,21 @@
             background-attachment: fixed;
             background-size: cover;
 
+        }
+
+        .notification{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            position:sticky;
+            top:10px;
+        }
+
+        .buttons{
+            display: flex;
+            align-items: center;
+            gap:10px
         }
 
         .container{
@@ -157,6 +209,13 @@
             color: #f34b00;
         }
 
+        #login{
+            
+            border-color: red !important;
+            background-color: #f34b00 !important;
+            border-radius: 10px !important;
+        }
+
         @media (max-width:1000px){
             .container{
                 border: none;
@@ -187,6 +246,20 @@
                 font-size: 0.8rem !important;
             }
 
+            .notification{
+                position: sticky;
+                top:0;
+                margin-top: 0;
+
+            }
+            #danger-alert{
+                font-size: 0.8rem;
+                border-radius: 25px !important;
+                border-top-right-radius: 0 !important;
+                border-top-left-radius: 0 !important;
+
+            }
+
 
         }
         @media (min-width:1001px){
@@ -204,7 +277,61 @@
 </head>
 <body  style="color:white;">
     
+    <div class="notification">
+        <?php
+            if($registration_succ===false){
+                
+                echo '  <div class="alerts">
+                            <div
+                            id="danger-alert"
+                            class="relative w-full max-w-140 flex flex-wrap items-center justify-center py-1 px-4 rounded-lg text-base font-medium transition-all duration-500 border border-red-500 text-red-700 bg-red-100"
+                            >
+                            <!-- Close button -->
+                            <button
+                            id="close-danger-btn"
+                            type="button"
+                            aria-label="close-success"
+                            class="absolute right-4 p-1 rounded-md transition-opacity text-red-500 border border-red-500 opacity-40 hover:opacity-100"
+                            >
+                            <svg
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            height="16"
+                            width="16"
+                            class="h-4 w-4"
+                            xmlns="http://www.w3.org/2000/svg"
+                            >
+                            <path d="M18 6 6 18"></path>
+                            <path d="m6 6 12 12"></path>
+                            </svg>
+                            </button>
 
+                            <!-- Content -->
+                            <p class="flex flex-row items-center justify-center gap-x-2 w-full">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-7 w-7 text-red-700 mt-3"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            >
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                            <span class="mt-3 me-3">The email is already registered. Please try with a different email.</span>
+                            </p>
+                            </div>
+                            </div>
+
+            ';
+            }
+        ?>
+    </div>
+    
     <div class="container ">
 
             <img src="images/wallpaperflare.com_wallpaper (1).jpg" id="image">
@@ -244,11 +371,43 @@
                     <?php if(isset($errors['conpassword'])):?>
                         <p class="error"><?= $errors['conpassword']?></p>
                     <?php endif ; ?>
-
-                    <button type="submit" class="btn btn-success mt-3"><i class="bi bi-patch-plus me-3"></i>Sign UP</button>
+                    
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-success mt-3"><i class="bi bi-patch-plus me-2"></i>Sign UP</button>  
+                        <span class="mt-3">OR</span>
+                        <button type="button" id="login" class="btn btn-danger mt-3 "><i class="bi bi-box-arrow-in-right me-2"></i>Login</button>   
+                    </div>
             </form>
 
     </div>
+
+
+
+    <script>
+        window.onload = function(){
+            const alert_zone = document.querySelector('.alerts');
+            const close_danger_btn = document.getElementById('close-danger-btn');
+
+            const login_btn = document.getElementById('login');
+
+            if(alert_zone && close_danger_btn){
+                
+                close_danger_btn.addEventListener('click',function () {
+                    alert_zone.style.display="none";
+                })
+
+            }
+
+            if(login_btn){
+                login_btn.addEventListener('click',function () {
+                    window.location.href="login.php";
+                })
+            }
+        }
+
+
+    </script>
+    
 
 
 </body>
