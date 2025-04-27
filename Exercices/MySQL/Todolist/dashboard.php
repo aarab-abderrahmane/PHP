@@ -8,11 +8,30 @@ un user va être redireger vers myTodos.php (qui afficher uniquement la liste de
 un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche la liste des users ( on change un table html va afficher tout les todos de l user selectionné ) et bien sur admin peut modifier et supprimer les todos -->
 
 
+<?php
 
-<?php 
-        include "connection-db.php";
+        if(!isset($_COOKIE['user_email'])){
+            header('Location: login.php');
+            exit;
+        }
 
-        $query = "SELECT * FROM category";
+
+        include 'connection-db.php';
+        $email_user = $_COOKIE['user_email'];
+
+        $id_user_query  = "SELECT idUser FROM userss WHERE email ='$email_user'";
+
+        $id_result = mysqli_query($connection,$id_user_query);
+
+        if($id_result && $row=mysqli_fetch_assoc($id_result)){
+            $id_user = $row['idUser'];
+
+            $query_todos = "SELECT * FROM todouser WHERE idUser='$id_user'";
+            $todos_result = mysqli_query($connection,$query_todos);
+        }
+
+
+
 
 ?>
 
@@ -22,47 +41,86 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     <title>Document</title>
+
+
+    <style>
+        .navbar-toggler-icon{
+            width: 20px;
+            height: 20px;
+        }
+
+        .link-add{
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .link-add:hover{
+            text-decoration: underline;
+        }
+
+        @media (max-width:1000px){
+            .link-add{
+                text-decoration: underline;
+            }
+        }
+    </style>
 </head>
-<body class="bg-dark">
+<body>
     
-    <header>
 
-    </header>
+        <nav class="navbar navbar-expand-md alert alert-dark m-4 rounded-4">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">MySite</a>
 
-    <div class="container ">
-            <form method="post" class="needs-validation" novalidate>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <input type="hidden" name="idtodo">
+                    <div class="collapse navbar-collapse" id="navbarContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0"> <!-- Removed the incorrect semicolon -->
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">ToDos</a>
+                            </li>
 
-                <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input type="text" name="title" class="form-control" id="title" required>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Archive</a>
+                            </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Add ToDo</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Account</a>
+                            </li>
+                        </ul>
+
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+
+                    </div>
                 </div>
+            </nav>
+
+
+        <main>
+
+                <?php
                 
-                <div class="mb-3">
-                    <label for="text" class="form-label">Text</label>
-                    <textarea name="text" id="text" class="form-control" required></textarea>
+                    if(mysqli_num_rows($todos_result) <=0){
+                        
+                        echo "<p class='alert alert-warning mt-5 text-center'>You haven't added anything yet <a class='link-add' href='todo.php' target='_Blank' >Click here to add.</a></p>";
+                    }
+                ?>
 
-                </div>
+        </main>
 
-                <div class="mb-3">
-                    <label for="options" class="form-label">Category</label>
-                    <select name="category" id="options" class="form-select" required>
-                        <option value="" disabled selected>Select a category</option>
-                    </select>
-
-                </div>
-
-                <div class="mb-3">
-                    <label for="image" class="form-label">Image</label>
-                    <input type="file" id="image" name="image" class="form-control" accept="image/jpg, image/png, image/jpeg, image/gif">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-    </div>
 
 </body>
 </html>

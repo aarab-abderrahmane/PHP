@@ -22,13 +22,14 @@
         
         if(isset($_POST['password']) && empty($password)){
             $errors['pass'] = 'Please enter your password.';
+        }
 
         if(empty($errors)){
 
             $email_check = "SELECT * FROM userss WHERE email = '$email'";
             $result = mysqli_query($connection,$email_check);
             if(mysqli_num_rows($result) <=0){
-                $errors['email'] = "Email not fonud";
+                $errors['email'] = "Email not found";
             }else{
                 $password_check = "SELECT * FROM userss WHERE email='$email' AND password='$password'";
                 $password_result = mysqli_query($connection,$password_check);
@@ -47,7 +48,7 @@
 
 
 
-    }}
+    }
 
 ?>
 
@@ -126,10 +127,14 @@
         }
 
 
-        form div:nth-child(2) , form div:nth-child(3),button[type='submit']{
+        /* form div:nth-child(2) , form div:nth-child(3),button[type='submit']{
             width: 30vw;
 
-        }        
+        }   */
+        
+        form > div{
+                width: 30vw;
+        }
 
 
         @media (max-width:1000px){
@@ -145,6 +150,7 @@
 
         .error{
             color: yellow;
+            /* background-color: red; */
         }
 
 
@@ -172,7 +178,7 @@
                 <?php
                     if(isset($errors['email'])) :
                 ?>
-                    <p class="error">-><?=$errors['email']?>
+                    <div><p class="error">-> <?= $errors['email']?></p></div>
                 <?php endif; ?>
 
                 <div class="input-group mb-3">
@@ -184,7 +190,7 @@
                 <?php
                     if(isset($errors['pass'])) :
                 ?>
-                    <p class="error">-><?=$errors['pass']?>
+                    <div><p class="error">-> <?=$errors['pass']?></p></div>
                 <?php endif; ?>
 
                 <button type="submit" class="btn btn-primary form-control">Login</button>

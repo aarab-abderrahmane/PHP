@@ -55,7 +55,7 @@
 
                     if(mysqli_query($connection,$sql)){
                         setcookie('user_email',$email,time()+86400,"/");
-                        header('Location: todo.php');
+                        header('Location: dashboard.php');
                         exit;
                     }else{
                         echo "There was an error while registering the user.";
