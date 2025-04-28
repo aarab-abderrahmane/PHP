@@ -28,6 +28,8 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
 
             $query_todos = "SELECT * FROM todouser WHERE idUser='$id_user'";
             $todos_result = mysqli_query($connection,$query_todos);
+
+
         }
 
 
@@ -46,6 +48,11 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
 
 
     <style>
+        body{
+            background-color: #242423;
+            font-family: monospace;
+        }
+
         .navbar-toggler-icon{
             width: 20px;
             height: 20px;
@@ -66,12 +73,56 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
                 text-decoration: underline;
             }
         }
+
+        main{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .card{
+            background-color: #000000;
+            border-radius:5 ;
+            color:white;
+            
+        }
+
+        .card hr {background-color: white;height: 2px;width: 100%;padding: 0;margin: 0;}
+
+        .card .text {
+            padding: 10px;
+        }
+        .card .category{padding:5px 10px 0 10px;background-color: ;}
+
+        .card:hover{
+            box-shadow: 4px 4px 0px white;
+        }
+
+        .image{
+            width: 100%;
+            height: 300px;
+            border-radius: 5px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        .navbar{
+            background-color: #000000 !important;
+        }
+        .navbar-brand {color:white !important};
+
+        
+
+
+
+
     </style>
 </head>
 <body>
     
 
-        <nav class="navbar navbar-expand-md alert alert-dark m-4 rounded-4">
+        <nav class="navbar navbar-expand-md">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">MySite</a>
 
@@ -82,26 +133,26 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
 
                     <div class="collapse navbar-collapse" id="navbarContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0"> <!-- Removed the incorrect semicolon -->
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">ToDos</a>
+                            <li class="nav-item ms-3">
+                                <a class="nav-link active px-4" aria-current="page" href="#"  style="background-color: white;color:black;border:none;border-radius:15px !important">Home</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Archive</a>
+                            <li class="nav-item mx-3">
+                                <a class="btn btn-danger" style="background-color: black;color:white;border:none;border-radius:15px !important"  href="#">Archive</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Add ToDo</a>
+                            <li class="nav-item ">
+                                <a class="btn btn-danger" style="background-color: black;color:white;border:none;border-radius:15px !important" href="todo.php">Add ToDo</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Account</a>
+                            <li class="nav-item mx-3">
+                                <a class="btn btn-danger" style="background-color: black;color:white;border:none;border-radius:15px !important" href="#">Account</a>
                             </li>
                         </ul>
 
                         <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
+                            <input  id="search-input" class="rounded-3 mx-3 px-2" style="background-color: #000000 !important;border-color:#ffffff !important;outline:none !important;color:#ffffff !important" type="text" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-success" style="background-color:#ff8ae4;color:black" type="submit">Search</button>
                         </form>
 
                     </div>
@@ -116,6 +167,34 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
                     if(mysqli_num_rows($todos_result) <=0){
                         
                         echo "<p class='alert alert-warning mt-5 text-center'>You haven't added anything yet <a class='link-add' href='todo.php' target='_Blank' >Click here to add.</a></p>";
+
+                    }else{
+
+                        while($row=mysqli_fetch_assoc($todos_result)){
+                                
+                                $category_query = "SELECT libelle FROM categorie WHERE idCat=".$row['idCat'].""; 
+                                $category_result = mysqli_query($connection,$category_query);
+
+                                $imageData = $row['image'];
+                                $base64Image = base64_encode($imageData);
+                                $imageSrc = "data:image/png;base64,".$base64Image;
+
+                                echo "
+                                
+                                    <div class='card'>
+                                        <img src=".$imageSrc." class='image'><br>
+                                        <div class='text'>
+                                        <p><b>Title : </b>".$row['titleTodo']."</p>
+                                        <p><b>description : </b>".$row['textTodo']."</p>
+                                        
+                                        </div>
+                                        <div><hr></div>
+                                        <div class='category'>
+                                        <p><b style='background-color:#ff89e3;color:black'>category :</b>  ".mysqli_fetch_assoc($category_result)['libelle']."</p>
+                                        </div>
+                                    </div>
+                                ";
+                        }
                     }
                 ?>
 
