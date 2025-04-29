@@ -75,10 +75,10 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
         }
 
         main{
-            display: grid;
-            grid-template-columns: repeat(4,1fr);
-            gap: 10px;
             padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 10px;
         }
 
         .card{
@@ -112,8 +112,27 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
         }
         .navbar-brand {color:white !important};
 
-        
+        .custom-input:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            border-color: #ffffff !important;
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+/* 
+        @meadi (min-width:13001px){
+            .todos{
+                padding: 50vw;
+            }
+        }
 
+        @media (max-width:1000px) {
+            main{
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+                gap: 10px;
+            }
+        } */
 
 
 
@@ -151,7 +170,7 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
                         </ul>
 
                         <form class="d-flex" role="search">
-                            <input  id="search-input" class="rounded-3 mx-3 px-2" style="background-color: #000000 !important;border-color:#ffffff !important;outline: none !important;color:#ffffff !important" type="text" placeholder="Search" aria-label="Search">
+                            <input id="search-input" class="custom-input rounded-3 mx-3 px-2" type="text" placeholder="Search" aria-label="Search">
                             <button class="btn btn-success" style="background-color:#ff8ae4;color:black" type="submit">Search</button>
                         </form>
 
@@ -165,7 +184,7 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
             <?php endif;?>
         </div>
 
-        <main>
+        <main class="todos">
 
                 <?php
                 
