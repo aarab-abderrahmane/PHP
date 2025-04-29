@@ -102,7 +102,7 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
         }
 
         .image{
-            width: 100%;
+            width: auto;
             height: 300px;
             border-radius: 5px;
             border-bottom-left-radius: 0px;
@@ -120,22 +120,41 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
             border-color: #ffffff !important;
             background-color: #000000 !important;
             color: #ffffff !important;
+            outline : 2px solid white !important;
+        }
+
+        b{
+            user-select: none;
+            -webkit-user-select: none; /* For Safari */
+            -moz-user-select: none;    /* For Firefox */
+            -ms-user-select: none;     /* For Internet Explorer/Edge */
         }
         
+
+        .nav-item:hover{
+            border: 2px solid white !important;
+            border-radius: 15px !important;
+        }
+
 /* 
         @meadi (min-width:13001px){
             .todos{
                 padding: 50vw;
             }
-        }
+        }*/
 
-        @media (max-width:1000px) {
-            main{
-                display: grid;
-                grid-template-columns: repeat(2,1fr);
-                gap: 10px;
+        @media (max-width:992px) {
+            .nav-item{
+                margin: 5px 0 !important;
             }
-        } */
+            body{
+                font-size: 0.8rem;
+            }
+
+
+        } 
+
+        
 
 
 
@@ -144,11 +163,11 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
 <body>
     
 
-        <nav class="navbar navbar-expand-md">
-                <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg  py-3" >
+                <div class="container-fluid" >
                     <a class="navbar-brand" href="#">MySite</a>
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                    <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
                     aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -156,7 +175,7 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
                     <div class="collapse navbar-collapse" id="navbarContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0"> <!-- Removed the incorrect semicolon -->
                             <li class="nav-item ms-3">
-                                <a class="nav-link active px-4" aria-current="page" href="#"  style="background-color: white;color:black;border:none;border-radius:15px !important">Home</a>
+                                <a class="nav-link active px-4" aria-current="page" href="#"  style="background-color: white;color:black;border:none !important;border-radius:15px !important">Home</a>
                             </li>
 
                             <li class="nav-item mx-3">
@@ -208,7 +227,7 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
                                 echo "
                                 
                                     <div class='card'>
-                                        <img src=".$imageSrc." class='image'><br>
+                                        <img src=".$imageSrc." class='image' oncontextmenu='return false;' draggable='false' ><br>
                                         <div class='text'>
                                         <p><b>Title : </b>".$row['titleTodo']."</p>
                                         <p><b>description : </b>".$row['textTodo']."</p>

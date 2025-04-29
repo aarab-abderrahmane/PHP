@@ -150,6 +150,13 @@
             background-color:rgb(226, 226, 226) !important;
         }
 
+        input[type="text"],select,textarea{
+            border: 2px solid black !important;
+
+        }
+
+        input[type='file']{border:1px dashed black}
+
 
         @media (min-width : 1301px){
             body{
@@ -166,8 +173,8 @@
 
         @media (max-width:1000px){
             .container{
-                width: 90vw;
-                margin-top: 8vh;
+                width:100%;
+                margin: 8vh 0;
             }
         }
     </style>
