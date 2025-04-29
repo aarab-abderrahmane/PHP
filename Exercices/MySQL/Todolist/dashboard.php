@@ -75,10 +75,12 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
         }
 
         main{
+            width: 100%;
             padding: 20px;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 300px));
-            gap: 10px;
+            gap: 15px;
+            justify-content: center;
         }
 
         .card{
@@ -119,10 +121,7 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
             background-color: #000000 !important;
             color: #ffffff !important;
         }
-        .container-fluid{
-            display: flex;
-            justify-content: center;
-        }
+        
 /* 
         @meadi (min-width:13001px){
             .todos{
@@ -187,9 +186,9 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
                 <p class='alert alert-warning mt-5 text-center '>You haven't added anything yet <a class='link-add' href='todo.php' target='_Blank' >Click here to add.</a></p>
             <?php endif;?>
         </div>
-        <div class="container-fluid">
+        <div >
 
-        <main class="todos">
+        <main class="todos w-100">
 
                 <?php
                 
