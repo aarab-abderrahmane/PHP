@@ -151,7 +151,7 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
                         </ul>
 
                         <form class="d-flex" role="search">
-                            <input  id="search-input" class="rounded-3 mx-3 px-2" style="background-color: #000000 !important;border-color:#ffffff !important;outline:none !important;color:#ffffff !important" type="text" placeholder="Search" aria-label="Search">
+                            <input  id="search-input" class="rounded-3 mx-3 px-2" style="background-color: #000000 !important;border-color:#ffffff !important;outline: none !important;color:#ffffff !important" type="text" placeholder="Search" aria-label="Search">
                             <button class="btn btn-success" style="background-color:#ff8ae4;color:black" type="submit">Search</button>
                         </form>
 
@@ -159,16 +159,19 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
                 </div>
             </nav>
 
+        <div>
+            <?php  if(mysqli_num_rows($todos_result) <=0)  : ?>
+                <p class='alert alert-warning mt-5 text-center '>You haven't added anything yet <a class='link-add' href='todo.php' target='_Blank' >Click here to add.</a></p>
+            <?php endif;?>
+        </div>
 
         <main>
 
                 <?php
                 
-                    if(mysqli_num_rows($todos_result) <=0){
+                    if(mysqli_num_rows($todos_result) > 0){
                         
-                        echo "<p class='alert alert-warning mt-5 text-center'>You haven't added anything yet <a class='link-add' href='todo.php' target='_Blank' >Click here to add.</a></p>";
 
-                    }else{
 
                         while($row=mysqli_fetch_assoc($todos_result)){
                                 

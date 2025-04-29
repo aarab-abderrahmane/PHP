@@ -262,13 +262,35 @@
 
 
         }
-        @media (min-width:1001px){
+        @media (min-width:1001px) and ( max-width: 1300px){
             form{
                 width: 31vw;;
             }
 
-     
+        }
 
+        @media (min-width:1301px){
+            form{
+                width: 25vw;;
+            }
+
+            #image{
+                width: 25vw;
+
+            }
+
+            form{
+                padding: 5vh;
+            }
+
+            .container{
+                margin: 0;
+            }
+
+            body{
+                justify-content: center;
+
+            }
 
         }
         
