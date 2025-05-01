@@ -7,15 +7,27 @@
         
         $email_user = $_COOKIE['user_email'];
 
-        $id_user_query  = "SELECT idUser FROM userss WHERE email ='$email_user'";
+        $user_query  = "SELECT * FROM userss WHERE email ='$email_user'";
 
-        $id_result = mysqli_query($connection,$id_user_query);
+        $result = mysqli_query($connection,$user_query);
 
-        if($id_result && $row=mysqli_fetch_assoc($id_result)){
+        if($result && $row=mysqli_fetch_assoc($result)){
             $id_user = (int)$row['idUser'];
+            $fname = ucfirst((string)$row['fname']);
+            $lname = ucfirst((string)$row['lname']);
+            $image_user = $row['imageUser'];
+            $password = $row['password'];
 
+
+
+        }else{
+            unset($_COOKIE['user_email']);
+            header('Location: login.php');
+            exit;
         }
 
+
+        
 
 
 ?>

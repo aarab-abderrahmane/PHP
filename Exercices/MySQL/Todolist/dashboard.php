@@ -187,7 +187,7 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
                             </li>
 
                             <li class="nav-item mx-3">
-                                <a class="btn btn-danger" style="background-color: black;color:white;border:none;border-radius:15px !important" href="#">Account</a>
+                                <a class="btn btn-danger" style="background-color: black;color:white;border:none;border-radius:15px !important" href="account.php">Account</a>
                             </li>
                         </ul>
 

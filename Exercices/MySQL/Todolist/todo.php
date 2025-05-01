@@ -29,7 +29,7 @@
             $image_path = $_FILES['image']['tmp_name'];
             
             // Check if file was uploaded successfully
-            if (!is_uploaded_file($image_path) && $_FILES['image']['error'] ==0) {
+            if (!is_uploaded_file($image_path) && $_FILES['image']['error'] !=0) {
                 $errors['image'] = "File upload failed.";
 
             } else {
@@ -42,8 +42,8 @@
                 if (!in_array($imageFileType, $allowedTypes)) {
                     $errors['image'] = "Only jpg, jpeg, gif, png files are allowed.";
                     
-                } elseif ($_FILES['image']['size'] > 10 * 1024 * 1024) {
-                    $errors['image'] = "File size must be less than 10 MB.";
+                } elseif ($_FILES['image']['size'] > 5 * 1024 * 1024) {
+                    $errors['image'] = "File size must be less than 5 MB.";
 
                 }else{
                     $imageData = file_get_contents($_FILES['image']['tmp_name']);
