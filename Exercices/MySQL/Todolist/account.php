@@ -496,7 +496,7 @@
 
                 if (choice){
 
-                    window.open("logout.php", "_self");
+                    window.open("deleteAccount.php", "_self");
 
                 }else{
                     document.getElementById('form').style.opacity="1";
