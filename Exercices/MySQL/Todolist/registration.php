@@ -270,25 +270,24 @@
         }
 
         @media (min-width:1301px){
-            form{
-                width: 25vw;;
-            }
 
             #image{
-                width: 25vw;
+                width: 33vw;
 
             }
 
             form{
                 padding: 5vh;
+                width: 30vw;
             }
 
             .container{
-                margin: 0;
+                margin: 10vh;
             }
 
             body{
                 justify-content: center;
+                
 
             }
 
