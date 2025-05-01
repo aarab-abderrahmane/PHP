@@ -149,6 +149,10 @@
             object-fit: cover;
         }
 
+
+
+
+
         .image-user-1{
             overflow: hidden;
             display: flex;
@@ -157,7 +161,7 @@
             font-size: 2rem;
         }
 
-        .image-user-1:hover,#upload_pic:hover{
+        .image-user-1:hover,#upload_pic:hover,.image-user-2:hover{
             opacity: 0.6;
             cursor: pointer;
         }
@@ -196,7 +200,7 @@
             width: 34%;
         }
 
-        button[type='submit']{
+        button[type='submit'],#delete_account{
             padding: 8px 10px;
             background-color:rgba(149, 249, 0, 0.88);
             border: 1px solid black;
@@ -209,6 +213,32 @@
                 background-color: rgba(149, 249, 0, 0.6);
         }
 
+        #delete_account{
+            background-color:rgba(255, 64, 0, 0.77);
+            font-weight: bold;
+
+        }
+
+        #delete_account:hover{
+            cursor: pointer;
+            background-color:rgba(255, 64, 0, 0.52);
+
+        }
+
+
+        .choice{
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px dashed black;
+            cursor: pointer;
+        }
+
+        ._2{
+            background-color:rgba(136, 255, 0, 0.76);
+        }
+
+
+        
         
 
 
@@ -219,7 +249,7 @@
 </head>
 
 
-<body>        
+<body >        
 
             <?php
             
@@ -267,7 +297,7 @@
     
             <header><a href="dashboard.php"> <- Back to Home</a></header>
 
-            <form method="post" enctype="multipart/form-data">
+            <form id="form" method="post" enctype="multipart/form-data">
             <div class="container">
 
                     <div id="user">
@@ -339,13 +369,21 @@
 
                         ?>
 
-                        <div>
+                        <div class="buttons">
                             <button type="submit">Save Changes</button>
+                            <button type="button" id="delete_account" onclick="deleteAccount()">Delete Account</button>
                         </div>
 
                     </div>
             </div>
             </form>
+
+            <div id="confirmBox" style="display: none;border-radius:7px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                            background: white; padding: 20px; border: 2px solid #444; z-index: 1000; text-align: center;">
+                <p>Are you sure you want to delete this account?</p>
+                <button class="choice _1" onclick="handleChoice(true)">Yes</button>
+                <button class="choice _2" onclick="handleChoice(false)">No</button>
+            </div>
     
 
     <script>
@@ -353,6 +391,8 @@
         const uploadBtn = document.getElementById('upload_pic');
         const fileInput = document.getElementById('image_input');
         const usernameFrame = document.querySelector('.image-user-1');
+        const imageUser = document.querySelector('.image-user-2');
+
         const user_frame = document.getElementById('user');
 
         const inputPass = document.getElementById('password');
@@ -368,6 +408,21 @@
         }
 
 
+        if(imageUser){
+
+            imageUser.addEventListener('click',()=>{
+                
+                var result =  confirm("Are you sure you want delete image?");
+                if (result){
+                    window.open('delete_image.php','_self')
+                
+                }
+
+        
+            })}
+
+        
+        
         if(usernameFrame){
 
             usernameFrame.addEventListener('click',()=>{
@@ -427,6 +482,27 @@
             }
 
         })
+
+        function deleteAccount(){
+
+            document.getElementById('form').style.opacity="0.7";
+            document.getElementById('confirmBox').style.display = 'block';
+
+            
+
+        }
+
+        function handleChoice(choice){
+
+                if (choice){
+
+                    window.open("logout.php", "_self");
+
+                }else{
+                    document.getElementById('form').style.opacity="1";
+                    document.getElementById('confirmBox').style.display = 'none';
+                }
+        }
 
 
 

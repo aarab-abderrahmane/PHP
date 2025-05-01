@@ -186,9 +186,16 @@ un admin vas être etre rediriger vers dashboardadmin.php  un select qui affiche
                                 <a class="btn btn-danger" style="background-color: black;color:white;border:none;border-radius:15px !important" href="todo.php">Add ToDo</a>
                             </li>
 
-                            <li class="nav-item mx-3">
-                                <a class="btn btn-danger" style="background-color: black;color:white;border:none;border-radius:15px !important" href="account.php">Account</a>
+                            <li class="nav-item dropdown mx-3">
+                                <a class="btn btn-danger dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: black; color: white; border: none; border-radius: 15px !important;">
+                                    Account
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                                    <li><a class="dropdown-item" href="account.php">Profile</a></li>
+                                    <li><a class="dropdown-item" href="logout.php" >logout</a></li>
+                                </ul>
                             </li>
+
                         </ul>
 
                         <form class="d-flex" role="search">
