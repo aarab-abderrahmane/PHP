@@ -139,3 +139,17 @@
 
 
 ?>
+
+
+<!-- exercice 1 -->
+
+<?php
+
+    $st = new Stagiaire(1, "Aarab", "Abderrahmane", 18);
+
+    $List = array();     #tableau 
+    $List[] = $st;
+
+    echo $List[0];  #uses toString() automatically
+
+?>
