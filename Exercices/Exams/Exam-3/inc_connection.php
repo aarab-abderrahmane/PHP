@@ -16,8 +16,8 @@
                     nomFourn VARCHAR(50) NOT NULL ,
                     prenomFourn VARCHAR(100) NOT NULL,
                     adrFourn TEXT NOT NULL ,
-                    emailForun VARCHAR(200) NOT NULL,
-                    telForun INT NOT NULL 
+                    emailFourn VARCHAR(200) NOT NULL,
+                    telFourn INT NOT NULL 
                 );
         ";
 
@@ -25,6 +25,16 @@
 
         $conn = new PDO("mysql:host=".db_host.";dbname=".db_name,db_user,db_pass);
         $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+
+        $get_id = $conn->query('SELECT idFourn FROM Fournisseurs');
+        $get_id->execute();
+        $all_ids = [];
+        while ($row = $get_id->fetch(PDO::FETCH_ASSOC)){
+            $all_ids[]=$row['idFourn'];
+        }
+
+        
         
 
 

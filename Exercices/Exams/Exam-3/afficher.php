@@ -35,6 +35,7 @@
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Prenom</th>
+                <th>adresse</th>
                 <th>Email</th>
                 <th>Tel</th>
                 <th>Actions</th>
@@ -49,14 +50,17 @@
                         echo "
                             <tr>
                                 <td>",$row['idFourn'],"</td>
-                                <td>",$row['nomForun'],"</td>
+                                <td>",$row['nomFourn'],"</td>
                                 <td>",$row['prenomFourn'],"</td>
                                 <td>",$row['adrFourn'],"</td>
                                 <td>",$row['emailFourn'],"</td>
                                 <td>",$row['telFourn'],"</td>
                                 <td>
-                                    <a href='deleteFourn?",$row['idFourn'],"' >delete</a>
-                                    <a href='editFourn?",$row['idFourn'],"' >delete</a>
+                                    <a href='supprimer.php?id=",$row['idFourn'],"' >delete</a>
+                                    <form action='edit.php' method='post'>
+                                        <input type='hidden' name='id' value='",$row['idFourn'],"'>
+                                        <button type='submit' >edit</button>
+                                    </form>
                                 </td>
 
                             </tr>

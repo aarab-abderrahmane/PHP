@@ -32,7 +32,7 @@
         }
 
         if(empty($errors)){
-            $sql = "INSERT INTO fournisseurs (idFourn,nomFourn,prenomFourn,telForun,emailForun,adrFourn)
+            $sql = "INSERT INTO fournisseurs (idFourn,nomFourn,prenomFourn,telFourn,emailFourn,adrFourn)
                     VALUES (?,?,?,?,?,?)";
             
             $stmt = $conn->prepare($sql);
