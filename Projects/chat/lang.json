@@ -1,0 +1,53 @@
+
+
+{
+  "english":{
+        "logoText":"ChatApp",
+        "navFeatures": "Features",
+        "navPricing": "Learn More",
+        "navAbout": "About",
+        "signUp": "Sign Up",
+        "mainTitle": "Connect Instantly. Stay Connected Always.",
+        "mainDesc": "Experience seamless communication with our cutting-edge chat application. Connect with friends, family, and colleagues effortlessly.",
+        "getStarted": "Get Started →",
+        "learnMore": "Learn More",
+        "featuresTitle": "Key Features",
+        "feature1Title": "Instant Messaging",
+        "feature1Desc": "Send and receive messages instantly with our lightning-fast messaging system.",
+        "feature2Title": "Group Chats",
+        "feature2Desc": "Create groups and connect with multiple people at once. Perfect for teams, families, and communities.",
+        "feature3Title": "End-to-End Encryption",
+        "feature3Desc": "Your messages are secured with end-to-end encryption, ensuring your privacy.",
+        "aboutTitle": "About ChatApp",
+        "aboutPara1": "ChatApp is built with a single goal in mind - to make communication faster, more private, and more enjoyable. Whether you're chatting with friends, collaborating with your team, or building new connections, ChatApp delivers a smooth and secure messaging experience.",
+        "aboutPara2": "Designed with modern web technologies and protected with end-to-end encryption, ChatApp ensures your messages stay yours. No tracking. No ads. Just pure conversation.",
+        "footerText": "© 2024 ChatApp. All rights reserved.",
+        "footerBy": "by: aarab-abderrahmane"
+  },
+  "darija":{
+    
+      "logoText":"شات.آب",
+      "navFeatures": "المميزات",
+      "navPricing": "تعلم أكثر",
+      "navAbout": "حول",
+      "signUp": "سجل",
+      "mainTitle": "تواصل بسرعة. وابقى على اتصال دائم.",
+      "mainDesc": "عيش تجربة تواصل سلسة مع تطبيق الدردشة ديالنا المتطور. تواصل مع الأصدقاء، العائلة، والزملاء بسهولة.",
+      "getStarted": "بدا الآن →",
+      "learnMore": "تعلم أكثر",
+      "featuresTitle": "المميزات الرئيسية",
+      "feature1Title": "مراسلة فورية",
+      "feature1Desc": "رسل واستقبل الرسائل بسرعة كبيرة مع نظام المراسلة ديالنا.",
+      "feature2Title": "دردشات جماعية",
+      "feature2Desc": "كون مجموعات وتواصل مع عدة أشخاص دفعة وحدة. مثالي للفرق، العائلات، والمجتمعات.",
+      "feature3Title": "تشفير شامل",
+      "feature3Desc": "رسائلك محمية بالتشفير الشامل، باش تبقى خصوصيتك محفوظة.",
+      "aboutTitle": "حول شات.آب",
+      "aboutPara1": "تم بناء شات.آب بهدف واحد - جعل التواصل أسرع، أكثر خصوصية وأكثر متعة. سواء كنت كتدردش مع صحابك، أو كتعاون مع الفريق ديالك، أو كتكون علاقات جديدة، شات.آب كيقدم تجربة مراسلة سلسة وآمنة.",
+      "aboutPara2": "مصمم بتقنيات حديثة ومحمي بالتشفير الشامل، شات.آب كيضمن بقاء الرسائل ديالك خاصة بيك. ما كاينش تتبع، ما كاينش إعلانات، غير دردشة نقية.",
+      "footerText": "© 2024 شات.آب , جميع الحقوق محفوظة.",
+      "footerBy": "بواسطة: اعراب-عبدالرحمن"
+
+
+  }
+}

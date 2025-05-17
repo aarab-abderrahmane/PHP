@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat App Landing Page</title>
+    <title>ChatApp</title>
+    <link rel="icon" type="image/png" href="assest/images/aperture.png" >
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -18,59 +19,96 @@
             background-color: rgba(227, 35, 227, 0.361);
         }
 
+        .animated-underline{
+            position:relative;
+            cursor: pointer;
+        }
+
+        .animated-underline::after{
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            bottom: -15px;
+            left: 0;
+            background-color: #7c3aed;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.7s ease;
+            
+        }
+        .animated-underline:hover::after{
+            transform: scaleX(1);
+            transform-origin: center;
+        }
+
     </style>
 </head>
+
+
 <body class="bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white flex flex-col min-h-screen">
     <header class="py-6 px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between">
             <div class="flex items-center">
-                <div class="text-yellow-400 me-3">
+                <div class="text-blue-400 me-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-aperture-icon lucide-aperture"><circle cx="12" cy="12" r="10"/><path d="m14.31 8 5.74 9.94"/><path d="M9.69 8h11.48"/><path d="m7.38 12 5.74-9.94"/><path d="M9.69 16 3.95 6.06"/><path d="M14.31 16H2.83"/><path d="m16.62 12-5.74 9.94"/></svg>
                 </div>
-                <h1 class="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+                <h1 data-i18n="logoText" class="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
                     ChatApp
                 </h1>
 
             </div>
 
             <nav>
-                <ul class="flex space-x-4 sm:space-x-6">
+                <ul class="flex space-x-4 items-center sm:space-x-6">
                     <li>
-                        <a href="#features" class="text-gray-300 hover:text-white transition-colors duration-300">
+                        <a data-i18n="navFeatures" href="#features" class="text-gray-300 hover:text-white transition-colors duration-300">
                             Features
                         </a>
                     </li>
                     <li>
-                        <a href="#pricing" class="text-gray-300 hover:text-white transition-colors duration-300">
-                            Pricing
+                        <a data-i18n="navPricing" href="#pricing" class="text-gray-300 hover:text-white transition-colors duration-300">
+                            Learn More
                         </a>
                     </li>
                     <li>
-                        <a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300">
+                        <a data-i18n="navAbout" href="#about" class="text-gray-300 hover:text-white transition-colors duration-300">
                             About
                         </a>
                     </li>
+                    <li>
+                        <select
+                        onchange="changeLanguage(this.value)";
+                        class="cursor-pointer appearance-none bg-transparent text-gray-300 hover:text-white px-2 py-2 rounded-md border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+                        >
+                        <option  style="background-color: #4d196e;" disabled selected>Language</option>
+                        <option style="background-color: #4d196e;" value="english">English</option>
+                        <option style="background-color: #4d196e;" class="font-semibold" value="darija">الدراجة</option>
+                        </select>
+
+                    </li>
+
                 </ul>
             </nav>
-            <button class="bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-white border border-purple-500/30 hover:from-purple-500/30 hover:to-blue-500/30 hover:scale-105 transition-all duration-300 py-2.5 px-6 rounded-full">
+            <button data-i18n="navFeatures" class="bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-white border border-purple-500/30 hover:from-purple-500/30 hover:to-blue-500/30 hover:scale-105 transition-all duration-300 py-2.5 px-6 rounded-full">
                 Sign Up
             </button>
         </div>
     </header>
 
-    <main class="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+    <main class="flex-1 flex flex-col items-center justify-center mt-8 px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl text-center space-y-8">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+            <h1 data-i18n="mainTitle" class="select-none text-4xl sm:text-5xl lg:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
                 Connect Instantly. <br> Stay Connected Always.
             </h1>
-            <p class="text-gray-300 text-lg sm:text-xl">
+            <p data-i18n="mainDesc" class="text-gray-300 text-lg sm:text-xl">
                 Experience seamless communication with our cutting-edge chat application. Connect with friends, family, and colleagues effortlessly.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button class="bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg hover:from-purple-600 hover:to-blue-600 px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300">
+                <button data-i18n="getStarted" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg hover:from-purple-600 hover:to-blue-600 px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300">
                     Get Started <span class="ml-2">&#8594;</span>
                 </button>
-                <button class="bg-transparent text-white border border-purple-500/30 hover:border-purple-500/50 hover:bg-white/10 px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300">
+                <button data-i18n="learnMore" class="bg-transparent text-white border border-purple-500/30 hover:border-purple-500/50 hover:bg-white/10 px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300">
                     Learn More
                 </button>
             </div>
@@ -79,7 +117,7 @@
 
     <section id="features" class="py-16 px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto space-y-12">
-            <h2 class="text-3xl sm:text-4xl font-semibold text-center text-white">
+            <h2 data-i18n="featuresTitle"  class="animated-underline select-none text-3xl sm:text-4xl font-semibold text-center text-white">
                 Key Features
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -87,26 +125,26 @@
                     <div class="mb-4 text-purple-400">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="m21.73 18-8-8a2 2 0 0 0-1.49-.85H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2Z"/><circle cx="7" cy="9" r="1"/><circle cx="15" cy="9" r="1"/><path d="M9.17 15.13a3 3 0 1 0 5.66 0"/></svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-white mb-2">Instant Messaging</h3>
-                    <p class="text-gray-300">
+                    <h3 data-i18n="feature1Title" class="text-xl font-semibold text-white mb-2">Instant Messaging</h3>
+                    <p data-i18n="feature1Desc" class="text-gray-300">
                         Send and receive messages instantly with our lightning-fast messaging system.
                     </p>
                 </div>
                 <div class="bg-white/5 backdrop-blur-md rounded-xl p-6 shadow-lg border border-white/10 hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02]">
-                     <div class="mb-4 text-blue-400">
+                    <div class="mb-4 text-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-4-4h-3"/><circle cx="16" cy="7" r="4"/></svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-white mb-2">Group Chats</h3>
-                    <p class="text-gray-300">
+                    <h3 data-i18n="feature2Title" class="text-xl font-semibold text-white mb-2">Group Chats</h3>
+                    <p data-i18n="feature2Desc" class="text-gray-300">
                         Create groups and connect with multiple people at once. Perfect for teams, families, and communities.
                     </p>
                 </div>
                 <div class="bg-white/5 backdrop-blur-md rounded-xl p-6 shadow-lg border border-white/10 hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02]">
                     <div class="mb-4 text-yellow-400">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-white mb-2">End-to-End Encryption</h3>
-                    <p class="text-gray-300">
+                    <h3 data-i18n="feature3Title" class="text-xl font-semibold text-white mb-2">End-to-End Encryption</h3>
+                    <p data-i18n="feature3Desc" class="text-gray-300">
                         Your messages are secured with end-to-end encryption, ensuring your privacy.
                     </p>
                 </div>
@@ -114,8 +152,25 @@
         </div>
     </section>
 
+
+    <section id="about" class="py-16 px-4 sm:px-6 lg:px-8 ">
+        <div class="max-w-4xl mx-auto text-center space-y-8" >
+            <h2 data-i18n="aboutTitle" class="animated-underline select-none text-3xl sm:text-4xl  font-semibold">
+                About ChatApp
+            </h2>
+            <p data-i18n="aboutPara1" class="text-gray-300 text-lg leading-relaxed">
+                ChatApp is built with a single goal in mind - to make communication faster, more private, and more enjoyable. Whether you're chatting with friends, collaborating with your team, or building new connection, ChatAppp delivers a smooth and secure messaging expereinces.
+            </p>
+            <p data-i18n="aboutPara2" class="text-gray-400 text-md">
+            Designed with modern web technologies and protected with end-to-end encryption, ChatApp ensures your messages stay yours. No tracking. No ads. Just pure conversation.
+            </p>
+        </div>
+    </section>
+
+
     <footer class="py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-400">
-        <p>&copy; 2024 ChatApp. All rights reserved.</p>
+        <p data-i18n="footerText">&copy; 2024 ChatApp. All rights reserved.</p>
+        <pre data-i18n="footerBy">by:<a>aarab-abderrahmane</a></pre>
     </footer>
 
     <script>
@@ -129,6 +184,37 @@
                 });
             });
         });
+
+
+        function changeLanguage(lang) {
+            fetch('lang.json')
+                .then(response => response.json())
+                .then(data => {
+                    const translations = data[lang];
+                    document.querySelectorAll('[data-i18n]').forEach(el => {
+                        const key = el.getAttribute('data-i18n');
+                        if (translations[key]) {
+                            el.textContent = translations[key];
+                            if(lang==='darija'){
+                                el.style.direction='rtl';
+
+                            }else{
+                                el.style.direction='ltr';
+
+                            }
+                        }
+                    });
+
+                    if(lang==='darija'){
+                        document.querySelector('[data-i18n="mainTitle"]').style.wordSpacing="-1vw"
+                    }else{
+                        document.querySelector('[data-i18n="mainTitle"]').style.wordSpacing="normal"
+
+                    }
+                })
+                .catch(error => console.error('Error loading translation file:', error));
+        }
+
     </script>
 </body>
 </html>
