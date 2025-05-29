@@ -201,3 +201,125 @@ echo "$var  |  $Var  |  $_  | " ;
     echo "\n".implode(',',['a.n','b'])
 
 ?>
+
+
+<!-- Programmation orientée object POO -->
+<?php
+
+    //héritage 
+    class Vehicle { // parent class
+
+        public function move(){
+
+            echo "\nMoving ..";
+
+        }
+
+    };
+
+
+    class Car extends vehicle {  // child class
+        public function drive(){
+            echo "\nCar is driving .";
+        }
+    }
+
+
+
+    $car = new Car();
+    $car->move(); // inherited from vehicule
+    $car->drive();
+
+
+?>
+
+<?php
+
+    // polymorphisme 
+
+    class Animal {
+        public function makeSound(){
+            echo "Some sound\n";
+
+        }
+    }
+
+    class Dog extends Animal {
+        public function makeSound(){
+            echo "woof!\n";
+        }
+    }
+
+    class Cat extends Animal {
+        public function makeSound(){
+            echo "Meow!\n";
+        }
+    }
+
+    function animalSound(Animal $animal){  // it must be defined inside the class first
+        
+        $animal->makeSound();
+
+    }
+
+
+    animalSound(new Dog());
+    animalSound(new Cat());
+    animalSound(new Animal())
+
+?>
+
+
+<?php
+
+    // Encapsulation 
+    class BankAccount {
+
+        private $balance = 0 ;
+        public function deposit($amount){
+            if ($amount > 0){
+                $this->balance += $amount;
+            }
+        }
+
+        public function getBalance(){
+            return $this->balance;
+        }
+
+    }
+
+    $account = new BankAccount();
+    $account->deposit(200);
+    $account->deposit(200);
+
+    echo $account->getBalance()
+
+?>
+
+
+
+<?php
+
+    // Abstraction 
+    abstract class Shape {
+        abstract public function area(); // *it should be applied in all classes.
+    }
+
+    class Rectangle extends Shape{
+        private $width ; 
+        private $height ; 
+
+        public function __construct($width,$height){
+            $this->width=$width;
+            $this->height=$height;
+        }
+
+        public function area(){
+            return $this->width * $this->height;
+        }
+    }
+
+    $rect = new Rectangle(5,10);
+    echo $rect->area()
+
+?>
