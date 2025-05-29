@@ -17,7 +17,7 @@
 <body class="bg-gray-900 text-white flex items-center justify-center min-h-screen p-4">
 
 
-  <form enctype="multipart/form-data" action="code.php" method="post" class="w-full max-w-md bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all">
+  <form  action="server.php" method="get" class="w-full max-w-md bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all">
 
     
     <div class="mb-4 text-center">
@@ -27,7 +27,7 @@
     </div>
 
 
-    <h2 class="text-3xl font-bold mb-6 text-center text-red-500">Get in Touch</h2>
+    <h2 class="text-3xl font-bold mb-6 text-center text-green-500">Get in Touch</h2>
 
     <!-- Name -->
     <div class="mb-5">
@@ -43,17 +43,7 @@
         class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-red-500 text-white placeholder-gray-400" required />
     </div>
 
-    <div class="mb-5">
-      <label for="pdf" class="block text-sm font-medium mb-2 text-gray-300">pdf</label>
-      <input type="file" id="pdf" name="pdf" 
-        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-red-500 text-white placeholder-gray-400" required />
-    </div>
 
-      <div class="mb-5">
-      <label for="image" class="block text-sm font-medium mb-2 text-gray-300">image</label>
-      <input type="file" id="image" name="image" 
-        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-red-500 text-white placeholder-gray-400" required />
-    </div>
 
     <!-- Message -->
     <div class="mb-5">

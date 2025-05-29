@@ -96,6 +96,10 @@
                     $errors['image']="File size must be less than 10 MB";
                 }
 
+                if (!move_uploaded_file($_FILES['image']['tmp_name'], $image_path)) {
+                    $errors['image']="please chose image";
+                }
+
 
 
 
