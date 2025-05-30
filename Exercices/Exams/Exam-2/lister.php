@@ -1,17 +1,16 @@
  <?php
 
-    // try{
+    try{
 
-    //         $conn = new PDO('mysql:host=localhost;dbname=Ecole',"root","");
-    //         $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            $conn = new PDO('mysql:host=localhost;dbname=Ecole',"root","");
+            $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-    //         $result = $conn->query("SELECT * FROM etudiant");
+            $result = $conn->query("SELECT * FROM etudiant");
 
-    //         echo "successfully";
 
-    // }catch(PDOException $e){
-    //     echo $e->getMessage();
-    // }
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
 
 
 
@@ -20,17 +19,17 @@
 
 <?php
     
-        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+        // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-        try{
+        // try{
 
-            $conn = new mysqli('localhost','root',"",'Ecole');
-            $result = $conn->query("SELECT * FROM etudiant");
+        //     $conn = new mysqli('localhost','root',"",'Ecole');
+        //     $result = $conn->query("SELECT * FROM etudiant");
 
 
-        }catch(mysqli_sql_exception $e){
-            die($e->getMessage());
-        }
+        // }catch(mysqli_sql_exception $e){
+        //     die($e->getMessage());
+        // }
     
 ?>
 
@@ -79,28 +78,9 @@
         <tbody>
             <?php
 
-                // if(!empty($result)){
+                if(!empty($result)){
 
-                //     foreach($result->fetchAll(PDO::FETCH_ASSOC) as $row){
-
-                //         echo "
-                        
-                //             <tr>
-                //                 <td>".$row['code_Etudiant']."</td>
-                //                 <td>".$row['nom']."</td>
-                //                 <td>".$row["prenom"]."</td>
-                //                 <td>".$row['age']."</td>
-                //                 <td>".$row['moyenne_bac']."</td>
-                //             </tr>
-                //         ";
-                //     }
-
-                // }
-
-
-                if($result->num_rows > 0){
-
-                    foreach($result->fetch_all(MYSQLI_ASSOC) as $row){
+                    foreach($result->fetchAll(PDO::FETCH_ASSOC) as $row){
 
                         echo "
                         
@@ -115,6 +95,25 @@
                     }
 
                 }
+
+
+                // if($result->num_rows > 0){
+
+                //     foreach($result->fetch_all(MYSQLI_ASSOC) as $row){
+
+                //         echo "
+                        
+                //             <tr>
+                //                 <td>".$row['code_Etudiant']."</td>
+                //                 <td>".$row['nom']."</td>
+                //                 <td>".$row["prenom"]."</td>
+                //                 <td>".$row['age']."</td>
+                //                 <td>".$row['moyenne_bac']."</td>
+                //             </tr>
+                //         ";
+                //     }
+
+                // }
             
             ?>
         </tbody>
