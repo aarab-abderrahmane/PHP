@@ -6,6 +6,11 @@
     <title>Document</title>
 
     <style>
+
+        *{
+            font-family: monospace;
+            font-size: 1rem;
+        }
         body{
             margin: 0;
             display: grid;
@@ -49,6 +54,17 @@
 
         form{
             width: 80%;
+            max-width: 800px;
+        }
+
+        fieldset{
+            display: flex;
+            flex-direction: column;
+            gap:10px;
+        }
+
+        .container{
+            margin-top:50px;
         }
 
 
@@ -83,25 +99,40 @@
         </div>
 
     </div>
-    <div>
+    <div class="container">
         <h1>Site Inscription des Stagiaires</h1>
         <form method="post" >
 
             <fieldset>
 
                 <legend>Fiche Stagaire</legend>
+                <div>
                 code : 
                 <input type="text" name="code">
+                </div>
+
+                <div>
                 Nom : 
                 <input type="text" name="nom">
+                </div>
+
+                <div>
                 Prenom : 
                 <input type="text" name="prenom">
+                </div>
+
                 <div>
+                    Homme
                     <input type="radio" name="gender" value="homme">
+                    Femme
                     <input type="radio" name="gender" value="femme">
                 </div>
-                Filiere : 
-                <input type="text" name="filiere">
+
+                <div>
+                    Filiere : 
+                    <input type="text" name="filiere">
+                </div>
+
 
                 <div>
                     <button type="reset">Effacer</button>
