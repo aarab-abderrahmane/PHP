@@ -108,6 +108,7 @@
         $query = "SELECT * FROM Etudiant";
         $result = $conn->query($query);
 
+
         echo "
             <table>
                 <th>
@@ -118,7 +119,8 @@
                     <td>Moyenne Bac</td>
                 </th>
         ";
-
+        
+        // foreach($result->fetchAll(PDO::FETCH_ASSOC) as $row)
         foreach($result as $row){
             echo `
             <tr>
@@ -137,6 +139,50 @@
         echo "Erreur : ".$e->getMessage();
     }
 
+
+?>
+
+<!-- other syntax with mysqli OOP -->
+
+<?php
+
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    try{
+
+        $conn = new mysqli('localhost','root',"",'Ecole.db');
+
+        $result = $conn->query("SELECT * FROM Etudiant");
+
+        echo "
+            <table>
+                <th>
+                    <td>code Etudiant</td>
+                    <td>nom</td>
+                    <td>prenom</td>
+                    <td>age</td>
+                    <td>Moyenne Bac</td>
+                </th>
+        ";
+
+        // foreach($result->fetch_all(MYSQLI_ASSOC) as $row)
+        while($row = $result->fetch_assoc()){
+            echo `
+            <tr>
+                <td>`.$row['code_Etudiant'].`</td>
+                <td>`.$row['nom'].`</td>
+                <td>`.$row['prenom'].`</td>
+                <td>`.$row['age'].`</td>
+                <td>`.$row['moyenne_Bac'].`</td>
+            </tr>
+            `;
+        }
+        echo "</table>";
+
+
+    }catch(mysqli_sql_exception  $e){
+        echo "MYSQLI Error : ". $e->getMessage();
+
+    }
 
 ?>
 
