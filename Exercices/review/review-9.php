@@ -11,6 +11,9 @@ $array = [
 
 ];
 
+$array['city']="agadir";
+print_r($array);
+
 echo $array['name']."\n";
 echo $array['hobbies']['1']."\n";
 // print_r($array)
@@ -59,7 +62,7 @@ print_r($array_2);
 
 
 $array_3 = ['1','10','9'];
-echo in_array($array_3,['abdu/1']);
+echo in_array('1',$array_3) ? "__true" : "__false";
 
 $data = "red,green,blue";
 $colors = explode(',',$data);
