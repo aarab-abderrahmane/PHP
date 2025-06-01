@@ -2,6 +2,30 @@
 
     include 'connection-db.php';
 
+    if($_SERVER['REQUEST_METHOD']==="POST"){
+
+        $code = $_POST['code'] ?? "";
+        $nom = $_POST['nom'] ?? "";
+        $prenom = $_POST['prenom'] ?? "";
+        $sexe = $_POST['gender'] ?? "";
+        $filiere = $_POST['filiere'] ?? "";
+
+        if(!empty($code)  && !empty($nom) && !empty($prenom) && !empty($sexe) && !empty($filiere)){
+
+            $result = $conn->query("SELECT * FROM stagiaires WHERE code = $code");
+            if(!$result->num_rows > 0 ){
+
+                $stm = $conn->prepare("INSERT INTO stagiaires(code,nom,prenom,sexe,filiere) VALUES (?,?,?,?,?)");
+                $stm->bind_param("issss",$code,$nom,$prenom,$sexe,$filiere);
+                $stm->execute();
+
+
+            }
+
+        }
+
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -97,7 +121,7 @@
         </div>
 
         <div class="marke">
-            <a href="">Supprimer</a>
+            <a href="supprimer.php">Supprimer</a>
         </div>
 
         <div class="marke">
@@ -127,6 +151,7 @@
                 <input type="text" name="prenom">
                 </div>
 
+                Sexe :
                 <div>
                     Homme
                     <input type="radio" name="gender" value="homme">

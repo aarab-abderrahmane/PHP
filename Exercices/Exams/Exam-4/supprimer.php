@@ -5,6 +5,17 @@
     $result = $conn->query('SELECT * FROM stagiaires');
 
 
+    if($_SERVER['REQUEST_METHOD']==="POST"){
+        $code = $_POST['code'] ?? "";
+        if(!empty($code)){
+
+            $conn->query("DELETE FROM stagiaires WHERE code = $code");
+            header('Location: '.$_SERVER['PHP_SELF']);
+            
+
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +41,7 @@
                             <p><b>code : </b>".$row['sexe']."</p>
                             <p><b>code : </b>".$row['filiere']."</p>
                             <form method='post'>
-                            <input type='hidden' value=".$row['code'].">
+                            <input type='hidden'name='code' value=".$row['code'].">
                             <button >supprimer</button>
                             </from>
                         </div>

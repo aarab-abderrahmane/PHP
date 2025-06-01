@@ -82,6 +82,13 @@
 <body>
 
 
+<div>
+
+</div>
+<div>
+    
+</div>
+
     <form  method="post"  enctype="multipart/form-data">
 
         <?php if(!isset($_COOKIE['image'])) : ?>
