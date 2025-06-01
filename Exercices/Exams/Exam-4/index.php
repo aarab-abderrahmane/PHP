@@ -1,3 +1,9 @@
+<?php
+
+    include 'connection-db.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,11 +81,11 @@
 
     <div>
         <div class="marke">
-            <a href="">Accueil</a>
+            <a href="index.php">Accueil</a>
         </div>
 
         <div class="marke">
-            <a href="">Ajouter</a>
+            <a href="index.php">Ajouter</a>
         </div>
 
         <div class="marke">
